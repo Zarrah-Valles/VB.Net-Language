@@ -1,0 +1,89 @@
+Public Class Form1
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Dim score As Double
+
+        If Double.TryParse(txtScore.Text, score) Then
+            Dim grade As String
+            Dim remarks As String
+
+            If score >= 97.5 And score <= 100 Then
+                grade = "1.00" : remarks = "Excellent"
+            ElseIf score >= 94.5 And score <= 97.49 Then
+                grade = "1.25" : remarks = "Very Good"
+            ElseIf score >= 91.5 And score <= 94.49 Then
+                grade = "1.50" : remarks = "Very Good"
+            ElseIf score >= 88.5 And score <= 91.49 Then
+                grade = "1.75" : remarks = "Very Good"
+            ElseIf score >= 85.5 And score <= 88.49 Then
+                grade = "2.00" : remarks = "Satisfactory"
+            ElseIf score >= 82.5 And score <= 85.49 Then
+                grade = "2.25" : remarks = "Satisfactory"
+            ElseIf score >= 79.5 And score = 82.49 Then
+                grade = "2.50" : remarks = "Satisfactory"
+            ElseIf score >= 76.5 And score <= 79.49 Then
+                grade = "2.75" : remarks = "Fair"
+            ElseIf score >= 74.5 And score <= 76.49 Then
+                grade = "3.00" : remarks = "Fair"
+            ElseIf score <= 74.49 Then
+                grade = "5.00" : remarks = "Failed"
+
+            End If
+
+            lblGrade.Text = grade
+            lblRemarks.Text = remarks
+
+        Else
+            MessageBox.Show("Please enter a valid score")
+        End If
+    End Sub
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim score As Double
+
+        If Double.TryParse(txtScoreC.Text, score) Then
+            Dim grade As String = ""
+            Dim remarks As String = ""
+
+            Select Case score
+                Case 97.5 To 100
+                    grade = "1.00" : remarks = "Excellent"
+                Case 94.5 To 97.49
+                    grade = "1.25" : remarks = "Very Good"
+                Case 91.5 To 94.49
+                    grade = "1.50" : remarks = "Very Good"
+                Case 88.5 To 91.49
+                    grade = "1.75" : remarks = "Very Good"
+                Case 85.5 To 88.49
+                    grade = "2.00" : remarks = "Satisfactory"
+                Case 82.5 To 85.49
+                    grade = "2.25" : remarks = "Satisfactory"
+                Case 79.5 To 82.49
+                    grade = "2.50" : remarks = "Satisfactory"
+                Case 76.5 To 79.49
+                    grade = "2.75" : remarks = "Fair"
+                Case 74.5 To 76.49
+                    grade = "3.00" : remarks = "Fair"
+                Case Is <= 74.49
+                    grade = "5.00" : remarks = "Failed"
+                Case Else
+                    MessageBox.Show("Please enter a valid score")
+                    Exit Sub
+
+            End Select
+
+            lblGradeC.Text = grade
+            lblRemarksC.Text = remarks
+
+        Else
+            MessageBox.Show("Please enter a valid score")
+
+        End If
+    End Sub
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        End
+
+    End Sub
+
+    Private Sub txtScore_TextChanged(sender As Object, e As EventArgs) Handles txtScore.TextChanged
+
+    End Sub
+End Class
