@@ -1,27 +1,30 @@
 Imports MySql.Data.MySqlClient
 
-Public Class Form1
+Public Class DATABASE
     Dim EntryCounter As Integer
 
-    ' === FORM LOAD ===
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         EntryCounter = DBHelper.GetNextEntryCounter()
         LoadData()
     End Sub
 
-    ' === GENERATE UNIQUE KEY ===
+
     Private Function GenerateUniqueKey(entryYear As Integer, birthYear As Integer, department As String, fullName As String) As String
         Dim specialChar As String = "-"
         Dim deptInitial As String = department.Substring(0, Math.Min(3, department.Length)).ToUpper()
         Dim entryNumber As String = EntryCounter.ToString("D5")
         Dim nameInitials As String = String.Join("", fullName.Split(" "c).Select(Function(n) If(n.Length > 0, n(0), ""))).ToUpper()
 
-        Dim uniqueKey As String = $"{entryYear Mod 100}{birthYear Mod 100}{specialChar}{deptInitial}{entryNumber}{nameInitials}"
+
+        Dim yearPart As String = (entryYear Mod 100).ToString("D2") & (birthYear Mod 100).ToString("D2")
+
+        Dim uniqueKey As String = $"{yearPart}{specialChar}{deptInitial}{entryNumber}{nameInitials}"
         EntryCounter += 1
         Return uniqueKey
     End Function
 
-    ' === CREATE RECORD ===
+
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         Try
             Dim name As String = txtName.Text.Trim()
@@ -52,7 +55,7 @@ Public Class Form1
         End Try
     End Sub
 
-    ' === READ DATA ===
+
     Private Sub LoadData(Optional searchTerm As String = "")
         Try
             Using con As MySqlConnection = DBHelper.GetConnection()
@@ -71,7 +74,21 @@ Public Class Form1
                     Dim adapter As New MySqlDataAdapter(cmd)
                     Dim dt As New DataTable()
                     adapter.Fill(dt)
-                    dgvStudents.DataSource = dt
+                    dgvStudents.DataSource = Nothing
+                    dgvStudents.Rows.Clear()
+                    dgvStudents.Columns.Clear()
+
+
+                    dgvStudents.Columns.Add("unique_key", "Unique Key")
+                    dgvStudents.Columns.Add("name", "Name")
+                    dgvStudents.Columns.Add("birth_year", "BirthYear")
+                    dgvStudents.Columns.Add("department", "Department")
+                    dgvStudents.Columns.Add("entry_year", "Entry Year")
+
+
+                    For Each row As DataRow In dt.Rows
+                        dgvStudents.Rows.Add(row("unique_key"), row("name"), row("birth_year"), row("department"), row("entry_year"))
+                    Next
                 End Using
             End Using
         Catch ex As Exception
@@ -79,10 +96,9 @@ Public Class Form1
         End Try
     End Sub
 
-    ' === UPDATE RECORD ===
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         Try
-            If dgvStudents.CurrentRow IsNot Nothing Then
+            If dgvStudents.CurrentRow IsNot Nothing AndAlso dgvStudents.CurrentRow.Cells("unique_key").Value IsNot Nothing Then
                 Dim uniqueKey As String = dgvStudents.CurrentRow.Cells("unique_key").Value.ToString()
                 Dim name As String = txtName.Text.Trim()
                 Dim birthYear As Integer = CInt(txtBirthYear.Text)
@@ -113,10 +129,10 @@ Public Class Form1
         End Try
     End Sub
 
-    ' === DELETE RECORD ===
+
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
         Try
-            If dgvStudents.CurrentRow IsNot Nothing Then
+            If dgvStudents.CurrentRow IsNot Nothing AndAlso dgvStudents.CurrentRow.Cells("unique_key").Value IsNot Nothing Then
                 Dim uniqueKey As String = dgvStudents.CurrentRow.Cells("unique_key").Value.ToString()
 
                 Using con As MySqlConnection = DBHelper.GetConnection()
@@ -142,17 +158,36 @@ Public Class Form1
         LoadData(txtSearch.Text.Trim())
     End Sub
 
-    ' === GRID SELECTION ===
+
     Private Sub dgvStudents_SelectionChanged(sender As Object, e As EventArgs) Handles dgvStudents.SelectionChanged
-        If dgvStudents.CurrentRow IsNot Nothing Then
-            txtName.Text = dgvStudents.CurrentRow.Cells("name").Value.ToString()
-            txtBirthYear.Text = dgvStudents.CurrentRow.Cells("birth_year").Value.ToString()
-            txtDepartment.Text = dgvStudents.CurrentRow.Cells("department").Value.ToString()
-            txtEntryYear.Text = dgvStudents.CurrentRow.Cells("entry_year").Value.ToString()
+        Try
+            If dgvStudents.CurrentRow IsNot Nothing AndAlso dgvStudents.CurrentRow.Cells("unique_key").Value IsNot Nothing Then
+                txtName.Text = dgvStudents.CurrentRow.Cells("name").Value.ToString()
+                txtBirthYear.Text = dgvStudents.CurrentRow.Cells("birth_year").Value.ToString()
+                txtDepartment.Text = dgvStudents.CurrentRow.Cells("department").Value.ToString()
+                txtEntryYear.Text = dgvStudents.CurrentRow.Cells("entry_year").Value.ToString()
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        txtName.Clear()
+        txtBirthYear.Clear()
+        txtDepartment.Clear()
+        txtEntryYear.Clear()
+        txtSearch.Clear()
+    End Sub
+
+    Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If result = DialogResult.Yes Then
+            Application.Exit()
         End If
     End Sub
 
-    ' === CLEAR INPUTS ===
+
     Private Sub ClearFields()
         txtName.Clear()
         txtBirthYear.Clear()
