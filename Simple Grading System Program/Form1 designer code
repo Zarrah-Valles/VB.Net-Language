@@ -1,0 +1,204 @@
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+Partial Class Form1
+    Inherits System.Windows.Forms.Form
+
+    'Form overrides dispose to clean up the component list.
+    <System.Diagnostics.DebuggerNonUserCode()>
+    Protected Overrides Sub Dispose(disposing As Boolean)
+        Try
+            If disposing AndAlso components IsNot Nothing Then
+                components.Dispose()
+            End If
+        Finally
+            MyBase.Dispose(disposing)
+        End Try
+    End Sub
+
+    'Required by the Windows Form Designer
+    Private components As System.ComponentModel.IContainer
+
+    'NOTE: The following procedure is required by the Windows Form Designer
+    'It can be modified using the Windows Form Designer.  
+    'Do not modify it using the code editor.
+    <System.Diagnostics.DebuggerStepThrough()>
+    Private Sub InitializeComponent()
+        Button1 = New Button()
+        lblGrade = New TextBox()
+        Label1 = New Label()
+        Label2 = New Label()
+        Label3 = New Label()
+        Label4 = New Label()
+        txtScoreC = New TextBox()
+        txtScore = New TextBox()
+        lblGradeC = New TextBox()
+        Label5 = New Label()
+        Button2 = New Button()
+        Button3 = New Button()
+        lblRemarks = New Label()
+        lblRemarksC = New Label()
+        SuspendLayout()
+        ' 
+        ' Button1
+        ' 
+        Button1.Font = New Font("Felix Titling", 20F, FontStyle.Bold)
+        Button1.ForeColor = Color.Red
+        Button1.Location = New Point(192, 341)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(389, 45)
+        Button1.TabIndex = 0
+        Button1.Text = "EXIT"
+        Button1.UseVisualStyleBackColor = True
+        ' 
+        ' lblGrade
+        ' 
+        lblGrade.Font = New Font("Segoe UI", 25F)
+        lblGrade.Location = New Point(120, 118)
+        lblGrade.Name = "lblGrade"
+        lblGrade.Size = New Size(179, 52)
+        lblGrade.TabIndex = 1
+        ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Font = New Font("Felix Titling", 25F, FontStyle.Bold)
+        Label1.Location = New Point(219, 41)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(328, 40)
+        Label1.TabIndex = 2
+        Label1.Text = "GRADING SYSTEM"
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Location = New Point(120, 201)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(135, 15)
+        Label2.TabIndex = 3
+        Label2.Text = "Enter Grade to Compute"
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Location = New Point(455, 100)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(70, 15)
+        Label3.TabIndex = 4
+        Label3.Text = "Equivalence"
+        ' 
+        ' Label4
+        ' 
+        Label4.AutoSize = True
+        Label4.Location = New Point(120, 100)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(70, 15)
+        Label4.TabIndex = 5
+        Label4.Text = "Equivalence"
+        ' 
+        ' txtScoreC
+        ' 
+        txtScoreC.Font = New Font("Segoe UI", 25F)
+        txtScoreC.Location = New Point(456, 219)
+        txtScoreC.Name = "txtScoreC"
+        txtScoreC.Size = New Size(179, 52)
+        txtScoreC.TabIndex = 6
+        ' 
+        ' txtScore
+        ' 
+        txtScore.Font = New Font("Segoe UI", 25F)
+        txtScore.Location = New Point(120, 219)
+        txtScore.Name = "txtScore"
+        txtScore.Size = New Size(179, 52)
+        txtScore.TabIndex = 7
+        ' 
+        ' lblGradeC
+        ' 
+        lblGradeC.Font = New Font("Segoe UI", 25F)
+        lblGradeC.Location = New Point(456, 118)
+        lblGradeC.Name = "lblGradeC"
+        lblGradeC.Size = New Size(179, 52)
+        lblGradeC.TabIndex = 8
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Location = New Point(455, 201)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(135, 15)
+        Label5.TabIndex = 9
+        Label5.Text = "Enter Grade to Compute"
+        ' 
+        ' Button2
+        ' 
+        Button2.Location = New Point(148, 277)
+        Button2.Name = "Button2"
+        Button2.Size = New Size(123, 23)
+        Button2.TabIndex = 10
+        Button2.Text = "Using If Then Else"
+        Button2.UseVisualStyleBackColor = True
+        ' 
+        ' Button3
+        ' 
+        Button3.Location = New Point(489, 277)
+        Button3.Name = "Button3"
+        Button3.Size = New Size(123, 23)
+        Button3.TabIndex = 11
+        Button3.Text = "Using Select Case"
+        Button3.UseVisualStyleBackColor = True
+        ' 
+        ' lblRemarks
+        ' 
+        lblRemarks.AutoSize = True
+        lblRemarks.Location = New Point(179, 173)
+        lblRemarks.Name = "lblRemarks"
+        lblRemarks.Size = New Size(0, 15)
+        lblRemarks.TabIndex = 12
+        ' 
+        ' lblRemarksC
+        ' 
+        lblRemarksC.AutoSize = True
+        lblRemarksC.Location = New Point(522, 173)
+        lblRemarksC.Name = "lblRemarksC"
+        lblRemarksC.Size = New Size(0, 15)
+        lblRemarksC.TabIndex = 13
+        ' 
+        ' Form1
+        ' 
+        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleMode = AutoScaleMode.Font
+        ClientSize = New Size(748, 398)
+        Controls.Add(lblRemarksC)
+        Controls.Add(lblRemarks)
+        Controls.Add(Button3)
+        Controls.Add(Button2)
+        Controls.Add(Label5)
+        Controls.Add(lblGradeC)
+        Controls.Add(txtScore)
+        Controls.Add(txtScoreC)
+        Controls.Add(Label4)
+        Controls.Add(Label3)
+        Controls.Add(Label2)
+        Controls.Add(Label1)
+        Controls.Add(lblGrade)
+        Controls.Add(Button1)
+        Name = "Form1"
+        Text = "Grading System"
+        ResumeLayout(False)
+        PerformLayout()
+    End Sub
+
+    Friend WithEvents Button1 As Button
+    Friend WithEvents lblGrade As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents txtScoreC As TextBox
+    Friend WithEvents txtScore As TextBox
+    Friend WithEvents lblGradeC As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents lblRemarks As Label
+    Friend WithEvents lblRemarksC As Label
+
+End Class
